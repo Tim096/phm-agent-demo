@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.d77f9f7a.css",
-    "main.js": "/static/js/main.19d68749.js",
-    "index.html": "/index.html",
-    "main.d77f9f7a.css.map": "/static/css/main.d77f9f7a.css.map",
-    "main.19d68749.js.map": "/static/js/main.19d68749.js.map"
+    "main.css": "/phm-agent-demo/static/css/main.d77f9f7a.css",
+    "main.js": "/phm-agent-demo/static/js/main.19d68749.js",
+    "index.html": "/phm-agent-demo/index.html",
+    "main.d77f9f7a.css.map": "/phm-agent-demo/static/css/main.d77f9f7a.css.map",
+    "main.19d68749.js.map": "/phm-agent-demo/static/js/main.19d68749.js.map"
   },
   "entrypoints": [
     "static/css/main.d77f9f7a.css",

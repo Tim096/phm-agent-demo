@@ -38,6 +38,7 @@ const inputParams = [
 export default function Dashboard() {
   const [input, setInput] = useState("");
   const [chats, setChats] = useState(chatData);
+  const [showDoc, setShowDoc] = useState(false);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -50,113 +51,144 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex gap-4 h-[calc(100vh-120px)]">
-      {/* 左側：聊天助手 */}
-      <section className="flex flex-col w-[28%] bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-2 text-blue-900">自然語言算法助手</h2>
-        <div className="flex-1 overflow-y-auto space-y-3 mb-2">
-          {chats.map((msg, idx) => (
-            <div key={idx} className={`flex ${msg.sender === "user" ? "justify-start" : "justify-end"}`}>
-              <div className={`rounded-lg px-3 py-2 text-sm whitespace-pre-line
-                ${msg.sender === "user" ? "bg-gray-100 text-gray-900 mr-8" : "bg-blue-100 text-blue-900 ml-8"}`}>
-                {msg.text}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex mt-2">
-          <input
-            className="flex-1 border rounded-l px-2 py-1 text-sm focus:outline-none"
-            placeholder="請輸入您的問題..."
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => e.key === "Enter" && handleSend()}
-          />
-          <button
-            className="bg-blue-600 text-white px-4 py-1 rounded-r hover:bg-blue-700"
-            onClick={handleSend}
-          >送出</button>
-        </div>
-      </section>
-
-      {/* 中間：算法狀態 */}
-      <section className="flex flex-col w-[35%] bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-2 text-blue-900">算法執行狀態</h2>
-        <div className="mb-2">
-          <div className="text-sm text-gray-500">EM機差分析算法</div>
-          <div className="flex items-center gap-2 mt-1">
-            <span className="text-xs text-gray-400">算法版本：</span>
-            <span className="text-xs">v2.35 (2025.01)</span>
-            <span className="text-xs ml-4">狀態：</span>
-            <span className="text-green-600 font-semibold text-xs">完成</span>
-          </div>
-          <div className="text-xs text-gray-400 mt-1">
-            樣本數：4,320　異常檢出：1.7%　運算時間：5秒
+    <div className="flex flex-col h-screen bg-gray-100">
+      {/* Document Button */}
+      <div className="flex justify-end p-4 bg-white shadow">
+        <button
+          className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 font-semibold"
+          onClick={() => setShowDoc(true)}
+        >
+          Document
+        </button>
+      </div>
+      {/* Document Modal */}
+      {showDoc && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl shadow-xl relative">
+            <button
+              className="absolute top-4 right-4 text-gray-600 hover:text-red-500 text-2xl font-bold"
+              onClick={() => setShowDoc(false)}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <iframe
+              title="PHM Document"
+              src={"PHM 智能化.html"}
+              className="w-full min-h-[80vh] rounded-b-xl"
+              style={{ border: "none" }}
+            ></iframe>
           </div>
         </div>
-        <div className="mb-2">
-          <div className="font-semibold text-gray-700 mb-1">輸入參數</div>
-          <ul className="text-xs text-gray-600 grid grid-cols-2 gap-x-4">
-            {inputParams.map((p, i) => (
-              <li key={i}><span className="font-medium">{p.label}：</span>{p.value}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="mb-2">
-          <div className="font-semibold text-gray-700 mb-1">結果摘要</div>
-          <ul className="text-xs">
-            <li><span className="text-orange-500 font-bold">12.7%</span>（需注意）</li>
-            <li><span className="text-green-600 font-bold">5.2%</span>（正常）</li>
-            <li><span className="text-blue-600 font-bold">9.3%</span>（正常）</li>
-            <li><span className="text-yellow-500 font-bold">18.7%</span>（需注意）</li>
-          </ul>
-        </div>
-        <button className="bg-purple-600 text-white py-2 rounded mt-auto hover:bg-purple-700 text-sm font-semibold">導出PDF報告</button>
-      </section>
-
-      {/* 右側：視覺化 */}
-      <section className="flex flex-col w-[37%] bg-white rounded-xl shadow p-4">
-        <h2 className="text-lg font-semibold mb-2 text-blue-900">機差分析視覺化</h2>
-        <div className="text-sm font-semibold mb-1">CF.流量控制機差：ETCH-01 vs ETCH-02</div>
-        <div className="text-xs text-gray-400 mb-2">Metal_Etch製程 | 2025-04-11至2025-04-25</div>
-        <div className="bg-gray-50 rounded p-2 mb-3">
-          <ResponsiveContainer width="100%" height={120}>
-            <LineChart data={lineData}>
-              <CartesianGrid stroke="#eee" />
-              <XAxis dataKey="date" fontSize={10} />
-              <YAxis fontSize={10} />
-              <Tooltip />
-              <Line type="monotone" dataKey="diff" stroke="#8437DE" strokeWidth={2} dot={false} />
-            </LineChart>
-          </ResponsiveContainer>
-          <div className="text-xs text-gray-500 text-center">機差時間趨勢</div>
-        </div>
-        <div className="mb-3">
-          <div className="font-semibold text-xs mb-1">不同流量範圍的機差</div>
-          <div className="space-y-1">
-            {barData.map((d, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="w-28 text-xs">{d.name}</span>
-                <div className="flex-1 bg-gray-200 h-3 rounded">
-                  <div
-                    className="h-3 rounded"
-                    style={{ width: `${d.value}%`, background: d.color }}
-                  ></div>
+      )}
+      <div className="flex gap-4 h-[calc(100vh-120px)]">
+        {/* 左側：聊天助手 */}
+        <section className="flex flex-col w-[28%] bg-white rounded-xl shadow p-4">
+          <h2 className="text-lg font-semibold mb-2 text-blue-900">自然語言算法助手</h2>
+          <div className="flex-1 overflow-y-auto space-y-3 mb-2">
+            {chats.map((msg, idx) => (
+              <div key={idx} className={`flex ${msg.sender === "user" ? "justify-start" : "justify-end"}`}>
+                <div className={`rounded-lg px-3 py-2 text-sm whitespace-pre-line
+                  ${msg.sender === "user" ? "bg-gray-100 text-gray-900 mr-8" : "bg-blue-100 text-blue-900 ml-8"}`}>
+                  {msg.text}
                 </div>
-                <span className="text-xs font-semibold" style={{ color: d.color }}>{d.value}%</span>
               </div>
             ))}
           </div>
-        </div>
-        <div className="bg-blue-50 rounded p-2">
-          <div className="font-semibold text-xs mb-1">改善建議</div>
-          <ul className="text-xs list-disc ml-5 text-blue-900">
-            <li>檢視ETCH-01的CF流量控制邊緣，特別是&gt;85sccm的高流量區</li>
-            <li>在下次PM時優先檢查ETCH-01的MFC校正曲線</li>
-            <li>暫時限制ETCH-01用於低流量型製程</li>
-          </ul>
-        </div>
-      </section>
+          <div className="flex mt-2">
+            <input
+              className="flex-1 border rounded-l px-2 py-1 text-sm focus:outline-none"
+              placeholder="請輸入您的問題..."
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && handleSend()}
+            />
+            <button
+              className="bg-blue-600 text-white px-4 py-1 rounded-r hover:bg-blue-700"
+              onClick={handleSend}
+            >送出</button>
+          </div>
+        </section>
+
+        {/* 中間：算法狀態 */}
+        <section className="flex flex-col w-[35%] bg-white rounded-xl shadow p-4">
+          <h2 className="text-lg font-semibold mb-2 text-blue-900">算法執行狀態</h2>
+          <div className="mb-2">
+            <div className="text-sm text-gray-500">EM機差分析算法</div>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-xs text-gray-400">算法版本：</span>
+              <span className="text-xs">v2.35 (2025.01)</span>
+              <span className="text-xs ml-4">狀態：</span>
+              <span className="text-green-600 font-semibold text-xs">完成</span>
+            </div>
+            <div className="text-xs text-gray-400 mt-1">
+              樣本數：4,320　異常檢出：1.7%　運算時間：5秒
+            </div>
+          </div>
+          <div className="mb-2">
+            <div className="font-semibold text-gray-700 mb-1">輸入參數</div>
+            <ul className="text-xs text-gray-600 grid grid-cols-2 gap-x-4">
+              {inputParams.map((p, i) => (
+                <li key={i}><span className="font-medium">{p.label}：</span>{p.value}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="mb-2">
+            <div className="font-semibold text-gray-700 mb-1">結果摘要</div>
+            <ul className="text-xs">
+              <li><span className="text-orange-500 font-bold">12.7%</span>（需注意）</li>
+              <li><span className="text-green-600 font-bold">5.2%</span>（正常）</li>
+              <li><span className="text-blue-600 font-bold">9.3%</span>（正常）</li>
+              <li><span className="text-yellow-500 font-bold">18.7%</span>（需注意）</li>
+            </ul>
+          </div>
+          <button className="bg-purple-600 text-white py-2 rounded mt-auto hover:bg-purple-700 text-sm font-semibold">導出PDF報告</button>
+        </section>
+
+        {/* 右側：視覺化 */}
+        <section className="flex flex-col w-[37%] bg-white rounded-xl shadow p-4">
+          <h2 className="text-lg font-semibold mb-2 text-blue-900">機差分析視覺化</h2>
+          <div className="text-sm font-semibold mb-1">CF.流量控制機差：ETCH-01 vs ETCH-02</div>
+          <div className="text-xs text-gray-400 mb-2">Metal_Etch製程 | 2025-04-11至2025-04-25</div>
+          <div className="bg-gray-50 rounded p-2 mb-3">
+            <ResponsiveContainer width="100%" height={120}>
+              <LineChart data={lineData}>
+                <CartesianGrid stroke="#eee" />
+                <XAxis dataKey="date" fontSize={10} />
+                <YAxis fontSize={10} />
+                <Tooltip />
+                <Line type="monotone" dataKey="diff" stroke="#8437DE" strokeWidth={2} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
+            <div className="text-xs text-gray-500 text-center">機差時間趨勢</div>
+          </div>
+          <div className="mb-3">
+            <div className="font-semibold text-xs mb-1">不同流量範圍的機差</div>
+            <div className="space-y-1">
+              {barData.map((d, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className="w-28 text-xs">{d.name}</span>
+                  <div className="flex-1 bg-gray-200 h-3 rounded">
+                    <div
+                      className="h-3 rounded"
+                      style={{ width: `${d.value}%`, background: d.color }}
+                    ></div>
+                  </div>
+                  <span className="text-xs font-semibold" style={{ color: d.color }}>{d.value}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-blue-50 rounded p-2">
+            <div className="font-semibold text-xs mb-1">改善建議</div>
+            <ul className="text-xs list-disc ml-5 text-blue-900">
+              <li>檢視ETCH-01的CF流量控制邊緣，特別是&gt;85sccm的高流量區</li>
+              <li>在下次PM時優先檢查ETCH-01的MFC校正曲線</li>
+              <li>暫時限制ETCH-01用於低流量型製程</li>
+            </ul>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
