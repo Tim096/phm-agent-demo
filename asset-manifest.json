@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/phm-agent-demo/static/css/main.bc2dd45c.css",
-    "main.js": "/phm-agent-demo/static/js/main.9dbd4928.js",
+    "main.css": "/phm-agent-demo/static/css/main.33356424.css",
+    "main.js": "/phm-agent-demo/static/js/main.86595746.js",
     "index.html": "/phm-agent-demo/index.html",
-    "main.bc2dd45c.css.map": "/phm-agent-demo/static/css/main.bc2dd45c.css.map",
-    "main.9dbd4928.js.map": "/phm-agent-demo/static/js/main.9dbd4928.js.map"
+    "main.33356424.css.map": "/phm-agent-demo/static/css/main.33356424.css.map",
+    "main.86595746.js.map": "/phm-agent-demo/static/js/main.86595746.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc2dd45c.css",
-    "static/js/main.9dbd4928.js"
+    "static/css/main.33356424.css",
+    "static/js/main.86595746.js"
   ]
 }
