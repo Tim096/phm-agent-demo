@@ -53,7 +53,7 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       {/* Document Button */}
-      <div className="flex justify-end p-4 bg-white shadow">
+      <div className="flex justify-end pt-2 pr-4 pb-4 pl-4 bg-white shadow mb-6">
         <button
           className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 font-semibold"
           onClick={() => setShowDoc(true)}
@@ -64,7 +64,7 @@ export default function Dashboard() {
       {/* Document Modal */}
       {showDoc && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-xl shadow-xl relative">
+          <div className="bg-white max-w-3xl w-full max-h-[85vh] overflow-y-auto rounded-xl shadow-xl relative">
             <button
               className="absolute top-4 right-4 text-gray-600 hover:text-red-500 text-2xl font-bold"
               onClick={() => setShowDoc(false)}

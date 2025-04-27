@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>半導體PHM智能代理系統簡報</title>
+    <style>
+        :root {
+            --primary-color: #3B4FE4;
+            --secondary-color: #8437DE;
+            --accent-color: #27AEDB;
+            --dark-color: #1E293B;
+            --light-color: #F8FAFC;
+            --success-color: #4EDE7C;
+            --warning-color: #FFBE42;
+            --danger-color: #FF4D6A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .presentation-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .slide-title {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .slide-subtitle {
+            color: var(--secondary-color);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .cover-slide {
+            text-align: center;
+            padding: 60px;
+            background: linear-gradient(135deg, #3B4FE4 0%, #8437DE 100%);
+            color: white;
+        }
+        
+        .cover-slide .slide-title {
+            color: white;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .cover-slide .slide-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 24px;
+        }
+        
+        .cover-info {
+            margin-top: 60px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .content-section {
+            margin-bottom: 20px;
+        }
+        
+        .content-list {
+            list-style-type: none;
+            margin-left: 20px;
+        }
+        
+        .content-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .content-list li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        .highlight-point {
+            background-color: rgba(59, 79, 228, 0.08);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .highlight-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .image-container {
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .slide-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-box {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .feature-title {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .value-point {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .value-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(59, 79, 228, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .value-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+        
+        .value-content {
+            flex: 1;
+        }
+        
+        .value-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .checklist {
+            list-style-type: none;
+        }
+        
+        .checklist li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: baseline;
+        }
+        
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .final-slide {
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .final-slide .slide-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+        
+        .logo-placeholder {
+            font-size: 60px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Cover Page -->
+        <div class="slide cover-slide">
+            <h1 class="slide-title">導入 AI 智能代理：革新半導體 PHM 分析與決策</h1>
+            <h2 class="slide-subtitle">以自然語言驅動專業演算法，打造可信賴的預測性維護新體驗</h2>
+            <div class="cover-info">
+                <p>報告人：曾鈜寬</p>
+                <p>日期：2025年4月28日</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Current Challenges -->
+        <div class="slide">
+            <h2 class="slide-title">當前的挑戰：專業工具的「高牆」</h2>
+            <div class="content-section">
+                <p>半導體產業擁有豐富的數據和強大的分析工具，但價值難以充分釋放：</p>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">痛點 1：使用門檻高</div>
+                <p>工程師需學習複雜工具和參數設定，依賴少數專家操作，難以普及。</p>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">痛點 2：數據整合難</div>
+                <p>分析常需跨系統提取數據（FDC, MES, 維修記錄...），效率低落。</p>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">痛點 3：「黑盒子」疑慮</div>
+                <p>AI/ML 模型的預測結果缺乏解釋，工程師難以完全信任和採納。</p>
+            </div>
+            
+            <div class="content-section">
+                <h3 class="slide-subtitle">目標</h3>
+                <p>如何讓數據和演算法的價值，真正釋放給第一線工程師？</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Our Concept -->
+        <div class="slide">
+            <h2 class="slide-title">構想：半導體 PHM 智能代理</h2>
+            <div class="content-section">
+                <h3 class="slide-subtitle">核心概念</h3>
+                <p>一個<strong>懂半導體</strong>、<strong>會對話</strong>、<strong>能解釋</strong>的 AI 助手。</p>
+            </div>
+            
+            <div class="content-section">
+                <h3 class="slide-subtitle">主要目標</h3>
+                <ul class="content-list">
+                    <li><strong>賦能工程師</strong>：讓任何人都能用<strong>自然語言</strong>輕鬆使用專業分析工具。</li>
+                    <li><strong>建立信任</strong>：提供<strong>透明、可解釋</strong>的分析過程與結果。</li>
+                    <li><strong>提升效率</strong>：無縫整合現有數據與工作流程。</li>
+                </ul>
+            </div>
+            
+            <div class="image-container">
+                <img src="./preview.webp" alt="半導體專用PHM智能代理系統核心架構" class="slide-image">
+                <p style="margin-top: 10px; font-style: italic; color: #666;">半導體專用PHM智能代理系統核心架構</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Core Feature 1 -->
+        <div class="slide">
+            <h2 class="slide-title">亮點一：自然語言驅動的演算法接口</h2>
+            <div class="content-section">
+                <p>AI Agent 作為工程師與複雜演算法/數據之間的「翻譯官」</p>
+            </div>
+            
+            <div class="content-section">
+                <h3 class="slide-subtitle">AI Agent的核心角色定位</h3>
+                <p>AI Agent在系統中扮演<strong>「智能橋樑」</strong>的核心角色，連接使用者的自然語言需求與複雜的專業演算法與數據。它不僅是一個被動的接口，而是<strong>主動理解需求、翻譯指令、協調資源、整合結果並提供專業解釋</strong>的智能協作者。透過這個角色轉換，使用者無需學習專業工具，只需用日常語言表達需求，即可獲得專業級的分析報告。</p>
+            </div>
+            
+            <div class="content-section">
+                <h3 class="slide-subtitle">如何運作</h3>
+                <ul class="content-list">
+                    <li>工程師用<strong>自然語言</strong>提出分析需求 (e.g., "比較 ETCH-01 和 02 最近兩週的機差")</li>
+                    <li>AI 自動理解意圖，提取關鍵參數（設備、時間、指標...），必要時追問澄清</li>
+                    <li>AI <strong>自動調用</strong>後端對應的專業演算法（如 EM 機差分析）</li>
+                    <li>將複雜的數字結果<strong>轉化為易懂的洞察和建議</strong></li>
+                </ul>
+            </div>
+            
+            <div class="image-container">
+                <img src="./preview (9).webp" alt="半導體工廠 AI Agent 算法接口" class="slide-image">
+                <p style="margin-top: 10px; font-style: italic; color: #666;">半導體工廠 AI Agent 自然語言算法接口示例</p>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">核心價值</div>
+                <p>大幅降低專業工具使用門檻，讓每位工程師都能輕鬆使用複雜演算法，提升分析效率。</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Core Feature 2 -->
+        <div class="slide">
+            <h2 class="slide-title">亮點二：透明可解釋的 PHM 分析</h2>
+            <div class="content-section">
+                <p>解決 AI "黑盒子" 問題，建立工程師對系統的信任感</p>
+            </div>
+            
+            <div class="two-column">
+                <div class="column">
+                    <div class="feature-box">
+                        <div class="feature-title">診斷邏輯追蹤</div>
+                        <p>清晰呈現從數據到結論的每一步分析過程，讓工程師理解診斷邏輯。</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <div class="feature-title">信心水準可視化</div>
+                        <p>量化預測的不確定性，提供0-100的可信度評估，包含置信區間。</p>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="feature-box">
+                        <div class="feature-title">角色化專業報告</div>
+                        <p>為不同角色(設備、製程、維護...)提供定制化內容，滿足各類人員需求。</p>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <div class="feature-title">互動式探索</div>
+                        <p>允許工程師深入探查數據細節，進行"What-if"分析，驗證系統結論。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="image-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <div style="flex: 1 1 calc(50% - 20px); max-width: calc(50% - 20px); text-align: center;">
+                    <img src="./preview (6).webp" alt="半導體PHM智能代理系統監控界面" class="slide-image">
+                    <p style="margin-top: 10px; font-style: italic; color: #666;">PHM系統監控界面</p>
+                </div>
+                <div style="flex: 1 1 calc(50% - 20px); max-width: calc(50% - 20px); text-align: center;">
+                    <img src="./preview (3).webp" alt="半導體PHM智能代理系統診斷界面" class="slide-image">
+                    <p style="margin-top: 10px; font-style: italic; color: #666;">PHM系統診斷界面</p>
+                </div>
+                <div style="flex: 1 1 calc(50% - 20px); max-width: calc(50% - 20px); text-align: center;">
+                    <img src="./preview (5).webp" alt="半導體PHM智能代理系統評估界面" class="slide-image">
+                    <p style="margin-top: 10px; font-style: italic; color: #666;">半導體PHM智能代理系統評估界面</p>
+                </div>
+                <div style="flex: 1 1 calc(50% - 20px); max-width: calc(50% - 20px); text-align: center;">
+                    <img src="./preview (7).webp" alt="半導體PHM智能代理系統預測界面" class="slide-image">
+                    <p style="margin-top: 10px; font-style: italic; color: #666;">半導體PHM智能代理系統預測界面</p>
+                </div>
+                <div style="flex: 1 1 calc(50% - 20px); max-width: calc(50% - 20px); text-align: center;">
+                    <img src="./preview (8).webp" alt="半導體PHM智能代理報告界面" class="slide-image">
+                    <p style="margin-top: 10px; font-style: italic; color: #666;">半導體PHM智能代理報告界面</p>
+                </div>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">核心價值</div>
+                <p>讓工程師不僅知其然(結果)，更知其所以然(原因)，促進人機協作決策。</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Knowledge Base -->
+        <div class="slide">
+            <h2 class="slide-title">AI 的大腦：半導體專用知識庫 (RAG)</h2>
+            <div class="content-section">
+                <p>AI 不只是通用模型，而是植入了深度的半導體領域知識</p>
+            </div>
+            
+            <div class="two-column">
+                <div class="column">
+                    <h3 class="slide-subtitle">知識內容</h3>
+                    <ul class="content-list">
+                        <li>設備手冊、規格、SOP文檔</li>
+                        <li>故障模式(FMEA)、歷史案例</li>
+                        <li>PHM方法論、維護知識</li>
+                        <li>良率與設備關聯數據</li>
+                    </ul>
+                    
+                    <div class="highlight-point" style="margin-top: 30px;">
+                        <div class="highlight-title">運作方式 (RAG)</div>
+                        <p>AI在回答問題或分析時，會先從這些專業知識庫中檢索最相關的信息，確保回答的<strong>精確性</strong>和<strong>專業性</strong>。</p>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <div class="image-container">
+                        <img src="./preview (2).webp" alt="半導體PHM專用RAG知識庫" class="slide-image">
+                        <p style="margin-top: 10px; font-style: italic; color: #666;">RAG知識庫分類與結構化示例</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">核心價值</div>
+                <p>讓 AI 的分析建議真正貼合半導體廠的實際情況，提供具體、可行的專業建議。</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Workflow Integration -->
+        <div class="slide">
+            <h2 class="slide-title">實用落地：與現有工作流程無縫整合</h2>
+            <div class="content-section">
+                <p>AI Agent 不是孤立的系統，而是嵌入到工程師的日常工作中</p>
+            </div>
+            
+            <div class="two-column">
+                <div class="column">
+                    <h3 class="slide-subtitle">整合場景示例</h3>
+                    <ul class="content-list">
+                        <li><strong>每日監控</strong>：晨會自動匯報重點設備健康狀態</li>
+                        <li><strong>故障響應</strong>：警報觸發時提供快速診斷與處理建議</li>
+                        <li><strong>預防性維護</strong>：結合RUL預測優化維護排程</li>
+                        <li><strong>良率分析</strong>：協助追溯良率問題相關的設備因素</li>
+                    </ul>
+                    
+                    <h3 class="slide-subtitle" style="margin-top: 20px;">整合點</h3>
+                    <p>連接 MES, FDC, CMMS, YMS 等現有系統</p>
+                </div>
+                
+                <div class="column">
+                    <div class="image-container">
+                        <img src="./preview (9).webp" alt="半導體廠PHM工作流程整合" class="slide-image">
+                        <p style="margin-top: 10px; font-style: italic; color: #666;">PHM系統與工廠現有工作流程整合</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">核心價值</div>
+                <p>將 AI 分析能力直接應用於實際工作環節，產生直接效益，提高工作效率。</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Expected Benefits -->
+        <div class="slide">
+            <h2 class="slide-title">導入 AI 智能代理的核心價值</h2>
+            
+            <div class="value-point">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 17.0001H19V15.0001H15V9.00005H13V17.0001ZM11 17.0001H5.00001V15.0001H9.00001V9.00005H11V17.0001ZM12 5.00005C13.1046 5.00005 14 5.89548 14 7.00005C14 8.10462 13.1046 9.00005 12 9.00005C10.8954 9.00005 10 8.10462 10 7.00005C10 5.89548 10.8954 5.00005 12 5.00005Z"></path></svg>
+                </div>
+                <div class="value-content">
+                    <div class="value-title">提升效率</div>
+                    <p>現場工程師用自然語言即可完成複雜分析，縮短分析時間，提高工作效率。</p>
+                </div>
+            </div>
+            
+            <div class="value-point">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12.75 6C12.75 5.58579 12.4142 5.25 12 5.25C11.5858 5.25 11.25 5.58579 11.25 6V12C11.25 12.4142 11.5858 12.75 12 12.75H16C16.4142 12.75 16.75 12.4142 16.75 12C16.75 11.5858 16.4142 11.25 16 11.25H12.75V6Z"></path></svg>
+                </div>
+                <div class="value-content">
+                    <div class="value-title">降低成本</div>
+                    <p>更精準的預測性維護，減少非預期停機和備件浪費，降低維護成本。</p>
+                </div>
+            </div>
+            
+            <div class="value-point">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.82 5.58L12 6.4L11.18 5.58C10.7935 5.19371 10.4313 4.77751 10.0961 4.33595C9.76083 3.89439 9.45392 3.43249 9.18 2.96C10.71 2.46 12.29 2.46 13.82 2.96C13.5461 3.43249 13.2392 3.89439 12.9039 4.33595C12.5687 4.77751 12.2065 5.19371 11.82 5.58H12.82ZM12 2C7.03 2 3 6.03 3 11C3 16 7 21 12 21C17 21 21 16 21 11C21 6.03 16.97 2 12 2ZM5 11C5 7.13 8.13 4 12 4C15.87 4 19 7.13 19 11C19 14.87 15.87 18 12 18C8.13 18 5 14.87 5 11ZM11.54 8.05L9.59 10L11.54 11.95L11.54 14.54L8.95 11.95L7 14.54L7 11.95L9.58 9.37L7 6.46L7.05 6L9.64 8.58L11.54 6.68L11.54 8.05ZM12.46 18L12.46 16.66L14.4 14.67L12.46 12.72L12.46 10.11L15.05 12.72L17 10.11L17 12.72L14.41 15.31L17 18.23L16.95 18.7L14.36 16.11L12.46 18Z"></path></svg>
+                </div>
+                <div class="value-content">
+                    <div class="value-title">增進信任</div>
+                    <p>可解釋性設計，讓工程師理解並信賴AI建議，提高系統採納率。</p>
+                </div>
+            </div>
+            
+            <div class="value-point">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 22C2 17.5817 5.58172 14 10 14C14.4183 14 18 17.5817 18 22H16C16 18.6863 13.3137 16 10 16C6.68629 16 4 18.6863 4 22H2ZM10 13C6.685 13 4 10.315 4 7C4 3.685 6.685 1 10 1C13.315 1 16 3.685 16 7C16 10.315 13.315 13 10 13ZM10 11C12.21 11 14 9.21 14 7C14 4.79 12.21 3 10 3C7.79 3 6 4.79 6 7C6 9.21 7.79 11 10 11ZM18.2837 14.7028C21.0644 15.9561 23 18.752 23 22H21C21 19.7099 19.7798 17.7208 17.8405 16.7545C18.4213 16.0866 18.9041 15.3289 19.2797 14.5H19.9999C21.2306 14.5 22.3719 14.007 23.2264 13.1997C22.7013 13.0337 22.1401 12.9459 21.5596 12.9459C19.5536 12.9459 17.7825 14.1901 17.1398 15.9642C17.502 15.5522 17.8844 15.1649 18.2837 14.7028ZM18 2C19.6569 2 21 3.34315 21 5C21 6.65685 19.6569 8 18 8C16.3431 8 15 6.65685 15 5C15 3.34315 16.3431 2 18 2Z"></path></svg>
+                </div>
+                <div class="value-content">
+                    <div class="value-title">知識傳承</div>
+                    <p>將專家經驗和分析邏輯固化於系統中，縮短新進人員學習曲線。</p>
+                </div>
+            </div>
+            
+            <div class="value-point">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 15V17H13V15H11ZM11 7V13H13V7H11Z"></path></svg>
+                </div>
+                <div class="value-content">
+                    <div class="value-title">優化決策</div>
+                    <p>提供更全面、及時、可靠的數據洞察支持決策，提高決策質量。</p>
+                </div>
+            </div>
+            
+            <div class="highlight-point">
+                <div class="highlight-title">總結</div>
+                <p>這是對現有數據和演算法投資的<strong>價值放大器</strong>。</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Summary and Next Steps -->
+        <div class="slide">
+            <h2 class="slide-title">總結與建議行動</h2>
+            
+            <div class="content-section">
+                <h3 class="slide-subtitle">總結</h3>
+                <ul class="content-list">
+                    <li>提議開發一個<strong>半導體專用 PHM 智能代理</strong></li>
+                    <li>核心是<strong>自然語言接口</strong> + <strong>可解釋性 PHM</strong></li>
+                    <li>旨在<strong>降低工具門檻、建立信任、提升效率</strong></li>
+                </ul>
+            </div>
+            <div class="content-section">
+                <h3 class="slide-subtitle">使用優勢</h3>
+                <ul class="content-list">
+                    <li><strong>降低使用門檻</strong>：工程師無需了解 QBD 詳細算法的參數設置和調用方式</li>
+                    <li><strong>參數透明</strong>：系統顯示從對話中提取的所有參數，用戶可以確認是否符合意圖</li>
+                    <li><strong>結果轉化</strong>：將數字結果轉化為有意義的洞察和建議</li>
+                    <li><strong>一站式體驗</strong>：從需求表達到獲取結果和建議的完整流程</li>
+                </ul>
+            </div>
+    </div>
+</body>
+</html>

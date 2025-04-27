@@ -17,7 +17,7 @@ const devicesMock = [
 ];
 
 export default function App() {
-  const [selectedDevice, setSelectedDevice] = useState(devicesMock[0].id);
+  const [selectedDevice, setSelectedDevice] = useState(devicesMock[0].id); 
   const [activeTab, setActiveTab] = useState("dashboard");
   const [devices] = useState(devicesMock);
 
